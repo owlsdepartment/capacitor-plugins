@@ -15,12 +15,15 @@ import SafariServices
         return safariViewController
     }
 
-    @objc public func prepare(for url: URL, withTint tint: UIColor? = nil, modalPresentation style: UIModalPresentationStyle = .fullScreen) -> Bool {
+    @objc public func prepare(for url: URL, withTint tint: UIColor? = nil, withFront front: UIColor? = nil, modalPresentation style: UIModalPresentationStyle = .fullScreen) -> Bool {
         if safariViewController == nil, let scheme = url.scheme?.lowercased(), ["http", "https"].contains(scheme) {
             let safariVC = SFSafariViewController(url: url)
             safariVC.delegate = self
-            if let color = tint {
-                safariVC.preferredBarTintColor = color
+            if let tintColor = tint {
+                safariVC.preferredBarTintColor = tintColor
+            }
+            if let frontColor = front {
+                safariVC.preferredControlTintColor = frontColor
             }
             safariVC.modalPresentationStyle = style
             if style == .popover {

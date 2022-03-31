@@ -12,13 +12,17 @@ public class CAPBrowserPlugin: CAPPlugin {
             return
         }
         // extract the optional parameters
-        var color: UIColor?
+        var tintColor: UIColor?
         if let toolbarColor = call.getString("toolbarColor") {
-            color = UIColor.capacitor.color(fromHex: toolbarColor)
+            tintColor = UIColor.capacitor.color(fromHex: toolbarColor)
+        }
+        var frontColor: UIColor?
+        if let controlColor = call.getString("controlColor") {
+            frontColor = UIColor.capacitor.color(fromHex: controlColor)
         }
         let style = self.presentationStyle(for: call.getString("presentationStyle"))
         // prepare for display
-        guard implementation.prepare(for: url, withTint: color, modalPresentation: style), let viewController = implementation.viewController else {
+        guard implementation.prepare(for: url, withTint: tintColor, withFront: frontColor, modalPresentation: style), let viewController = implementation.viewController else {
             call.reject("Unable to display URL")
             return
         }

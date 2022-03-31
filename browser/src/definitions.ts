@@ -78,6 +78,13 @@ export interface OpenOptions {
    * @since 1.0.0
    */
   toolbarColor?: string;
+  
+  /**
+   * A hex color to which the control buttons color is set. 
+   * Applies only on iOS.
+   *
+   */
+  controlColor?: string;
 
   /**
    * iOS only: The presentation style of the browser. Defaults to fullscreen.
